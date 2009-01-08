@@ -3,7 +3,7 @@ import numpy.matlib as ml
 from numpy import array, ndarray, zeros, inf
 
 def kmedoids(distmat, k, threshold=1e-15, maxiter=300,
-        seeds=None):
+        seeds=None, verbose=False):
     """\
     k-medoids clustering algorithm.
       distmat: a N-by-N dissimilarity matrix.
@@ -13,6 +13,8 @@ def kmedoids(distmat, k, threshold=1e-15, maxiter=300,
       seeds: a length-k int array of index (into distmat)
              representing the initial selection of medoid 
              points.
+      verbose: if True, print progress to standard output,
+               useful for debugging.
 
     return (imedoids, labels)
       imedoids: a length-k int array of index indicating
@@ -52,10 +54,13 @@ def kmedoids(distmat, k, threshold=1e-15, maxiter=300,
             imedoids[j] = idx_j[idxmin]
             J += distsum[idxmin]
 
+        iter += 1
+        if verbose:
+            print '[kmedoids] iter %d (J=%.4f)' % (iter, J)
+
         if Jprev-J < threshold:
             break
         Jprev = J
-        iter += 1
         if iter >= maxiter:
             break
 
