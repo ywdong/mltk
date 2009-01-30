@@ -4,36 +4,32 @@ from numpy import array, ndarray, zeros, inf, dot
 from scipy.spatial import distance_matrix
 
 __docformat__ = 'restructuredtext'
-__all__ = ('kmeans')
+__all__ = ['kmeans']
 
 def kmeans(data, k, threshold=1e-15, ntry=10,
         seeds=None, verbose=False):
     """\
     k-means clustering algorithm.
 
-    :Parameters:
-        data : ndarray
-            a N-by-D data array where each row is a vector for data
-            point and each column means a *feature*.
-        k : int
-            number of clusters.
-        threshold : float
-            the threshold to stop the iteration.
-        ntry : int
-            number of times to run k-means, useful to avoid accidentally
-            trapped in local maximum. If ``seeds`` is given, the algorithm
-            will run only once because the result is always the same with
-            the same seeds.
-        verbose : bool
-            if ``True``, print progress to standard output, useful for
-            debugging.
+    :type data: ndarray
+    :param data: a N-by-D data array where each row is a vector for data
+        point and each column means a *feature*.
+    :type k: int
+    :param k: number of clusters.
+    :type threshold: float
+    :param threshold: the threshold to stop the iteration.
+    :type ntry: int
+    :param ntry: number of times to run k-medoids, useful to avoid accidentally
+        trapped in local maximum. If ``seeds`` is given, the algorithm will run
+        only once because the result is always the same with the same seeds.
+    :type seeds: ndarray
+    :param seeds: a k-by-D array representing the k seeds (initial centroids).
+    :type verbose: bool
+    :param verbose: if ``True``, print progress to standard output. Useful for
+        debugging.
 
-    :Returns:
-        centroids : ndarray
-            a k-by-D array of indicating k centroids.
-        labels : ndarray
-            a length-N int array of the label for each
-            point.
+    :return: a k-by-D array indicating the centroids and a length-N
+        array the final label for each point.
     """
     minJ = inf
     min_centroids = None

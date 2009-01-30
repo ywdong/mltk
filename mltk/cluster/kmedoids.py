@@ -3,41 +3,32 @@ import numpy.matlib as ml
 from numpy import array, ndarray, zeros, inf
 
 __docformat__ = 'restructuredtext'
-__all__ = ('kmedoids')
+__all__ = ['kmedoids']
 
 def kmedoids(distmat, k, threshold=1e-15, ntry=5,
         seeds=None, verbose=False):
     """\
     k-medoids clustering algorithm.
 
-    :Parameters:
-        distmat : ndarray
-            a N-by-N dissimilarity matrix.
-        k : int
-            number of clusters.
-        threshold : float
-            the threshold to stop the iteration.
-        ntry : int
-            number of times to run k-medoids, useful to avoid
-            accidentally trapped in local maximum. If ``seeds``
-            is given, the algorithm will run only once 
-            because the result is always the same with the
-            same seeds.
-        seeds : ndarray
-            a length-k int array of index (into distmat)
-            representing the initial selection of medoid 
-            points.
-        verbose : bool
-            if ``True``, print progress to standard output,
-            useful for debugging.
+    :type distmat: ndarray
+    :param distmat: a N-by-N dissimilarity matrix.
+    :type k: int
+    :param k: number of clusters.
+    :type threshold: float
+    :param threshold: the threshold to stop the iteration.
+    :type ntry: int
+    :param ntry: number of times to run k-medoids, useful to avoid accidentally
+        trapped in local maximum. If ``seeds`` is given, the algorithm will run
+        only once because the result is always the same with the same seeds.
+    :type seeds: ndarray
+    :param seeds: a length-k int array of index (into ``distmat``) representing
+        the initial selection of medoids.
+    :type verbose: bool
+    :param verbose: if ``True``, print progress to standard output. Useful for
+        debugging.
 
-    :Returns:
-        imedoids : ndarray
-            a length-k int array of index indicating
-            the points selected as final medoids.
-        labels : ndarray
-            a length-N int array of the label for each
-            point.
+    :return: a length-k array of index indicating the medoids and a length-N
+        array the final label for each point.
     """
     minJ = inf
     min_imedoids = None
