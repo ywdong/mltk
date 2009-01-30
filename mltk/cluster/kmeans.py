@@ -19,14 +19,16 @@ def kmeans(data, k, threshold=1e-15, ntry=10,
     :type threshold: float
     :param threshold: the threshold to stop the iteration.
     :type ntry: int
-    :param ntry: number of times to run k-medoids, useful to avoid accidentally
-        trapped in local maximum. If ``seeds`` is given, the algorithm will run
-        only once because the result is always the same with the same seeds.
+    :param ntry: number of times to run k-medoids, useful to avoid
+        accidentally trapped in local maximum. If ``seeds`` is given,
+        the algorithm will run only once because the result is always
+        the same with the same seeds.
     :type seeds: ndarray
-    :param seeds: a k-by-D array representing the k seeds (initial centroids).
+    :param seeds: a k-by-D array representing the k seeds (initial
+        centroids).
     :type verbose: bool
-    :param verbose: if ``True``, print progress to standard output. Useful for
-        debugging.
+    :param verbose: if ``True``, print progress to standard output. 
+        Useful for debugging.
 
     :return: a k-by-D array indicating the centroids and a length-N
         array the final label for each point.
